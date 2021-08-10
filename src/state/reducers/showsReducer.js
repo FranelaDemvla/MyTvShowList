@@ -1,7 +1,13 @@
-const showsReducer = (state = {test: 0}, action) => {
+import actionTypes from "../actionTypes";
+
+const initialState = {
+    showList: []
+}
+
+const showsReducer = (state = initialState, action) => {
     switch(action.type){
-        case "test":
-            return {...state, test: state.test + action.payload}
+        case actionTypes.SHOW_LIST:
+            return {...state, showList: action.payload}
         default:
             return state;
     }
