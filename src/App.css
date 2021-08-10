@@ -1,0 +1,10 @@
+.main-container {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.show-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
