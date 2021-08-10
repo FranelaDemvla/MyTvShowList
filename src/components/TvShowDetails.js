@@ -13,7 +13,7 @@ export default function TvShowDetails(props) {
                 <Checkbox checked={isChecked} onChange={handleCheck}/>
                 <text>Add to favorites</text>
             </div>
-            
+            {showInfo.externals.imdb && <a href={`https://www.imdb.com/title/${showInfo.externals.imdb}`}>view IMDB</a>}
         </div>
     )
 }
