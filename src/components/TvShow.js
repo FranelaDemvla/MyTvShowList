@@ -19,8 +19,14 @@ function TvShow(props) {
     }
 
     const handleFavCheck = () => {
-        setChecked(!checked);
-        actionSetFavorite(showInfo.id)
+        if (checked && window.confirm(`Are you sure you want to delete ${showInfo.name} from your favorites?`)) {
+            setChecked(false);
+            actionSetFavorite(showInfo.id)
+        }
+        else {
+            setChecked(true);
+            actionSetFavorite(showInfo.id)
+        }
     }
 
     return (

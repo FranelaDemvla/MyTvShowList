@@ -20,8 +20,10 @@ function TvShowList(props) {
       </div>
       {
         showList.map(i => {
-          if(!showFavorites || (showFavorites && favorites.indexOf(i.id) !== -1)) {
-            return (<TvShow key={i.id} showInfo={i} isFavorite={true} />)
+          const favIndex = favorites.indexOf(i.id);
+
+          if(!showFavorites || (showFavorites && favIndex !== -1)) {
+            return (<TvShow key={i.id} showInfo={i} isFavorite={favIndex !== -1} />)
           }
         })
       }
