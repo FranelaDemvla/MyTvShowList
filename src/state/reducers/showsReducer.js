@@ -14,13 +14,21 @@ const showsReducer = (state = initialState, action) => {
         case actionTypes.GET_FAVS:
             return state;
         case actionTypes.SET_FAV:
-            const favList = state.favorites;
-            const favId = state.favorites.findIndex(action.payload);
+            console.log(action.payload)
 
-            if (favId < 0) {
-                return state;
+            const favList = state.favorites;
+            const favIndex = state.favorites.indexOf(action.payload);
+            console.log(favIndex);
+
+            if (favIndex === -1) {
+                favList.push(action.payload)
             }
-            favList.splice(favId)
+            else {
+                favList.splice(favIndex, 1)
+            }
+
+            console.log(favList);
+
             return { ...state, favorites: favList }
         default:
             return state;
