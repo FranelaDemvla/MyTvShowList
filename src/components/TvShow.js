@@ -36,7 +36,7 @@ function TvShow(props) {
             <Checkbox checked={checked} onChange={handleFavCheck}/>
 
             <Modal open={showModal} onClose={handleClose} className="details-modal">
-                <TvShowDetails showInfo={showInfo} />
+                <TvShowDetails showInfo={showInfo} isChecked={checked} handleCheck={handleFavCheck} />
             </Modal>
         </div>
     )
