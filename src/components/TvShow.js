@@ -1,14 +1,29 @@
-import React from 'react'
-import { Checkbox } from '@material-ui/core';
+import React, { useState } from 'react'
+import { Checkbox, Modal } from '@material-ui/core';
+import TvShowDetails from './TvShowDetails';
 
 export default function TvShow(props) {
-    const {showInfo, isFavorite} = props;
+    const [showModal, setShowModal] = useState(false)
+
+    const { showInfo, isFavorite } = props;
+
+    const handleOpen = () => {
+        setShowModal(true);
+    }
+
+    const handleClose = () => {
+        setShowModal(false);
+    }
 
     return (
         <div className="show-container">
-            <img src={showInfo.image.medium}/>
-            <h2>{showInfo.name}</h2>
-            <Checkbox value={isFavorite}/>
+            <img onClick={handleOpen} src={showInfo.image.medium} />
+            <h2 onClick={handleOpen}>{showInfo.name}</h2>
+            <Checkbox value={isFavorite} />
+
+            <Modal open={showModal} onClose={handleClose} className="details-modal">
+                <TvShowDetails showInfo={showInfo} />
+            </Modal>
         </div>
     )
 }
