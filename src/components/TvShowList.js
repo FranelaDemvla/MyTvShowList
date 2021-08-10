@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
 import TvShow from './TvShow'
 import { connect } from "react-redux";
-import { getFavorites, setFavorites } from '../state/actions';
-import { Checkbox } from '@material-ui/core';
+import { setFavorites, saveFavorites } from '../state/actions';
+import { Checkbox, Button } from '@material-ui/core';
 
 function TvShowList(props) {
-  const [showFavorites, setShowFavorites] = useState(false);
+  const { showList, favorites, actionSaveFavorites } = props;
 
-  const { showList, favorites } = props;
+  const [showFavorites, setShowFavorites] = useState(false);
 
   const handleFavoritesOnly = () => {
     setShowFavorites(!showFavorites);
+  }
+
+  const handleSave = () => {
+    actionSaveFavorites();
   }
 
   return (
@@ -27,6 +31,7 @@ function TvShowList(props) {
           }
         })
       }
+      {showFavorites && <Button color="primary" onClick={handleSave}>Save this list</Button>}
     </div>
   )
 }
@@ -36,8 +41,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchtoProps = (dispatch) => ({
-  actionGetFavorites: () => dispatch(getFavorites()),
-  actionSetFavorites: (id) => dispatch(setFavorites(id))
+  actionSetFavorites: (id) => dispatch(setFavorites(id)),
+  actionSaveFavorites: () => dispatch(saveFavorites())
 })
 
 export default connect(mapStateToProps, mapDispatchtoProps)(TvShowList);

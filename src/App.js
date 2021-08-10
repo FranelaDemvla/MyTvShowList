@@ -3,13 +3,14 @@ import './App.css';
 import Filter from "./components/Filter";
 import TvShowList from './components/TvShowList';
 import { connect } from "react-redux";
-import { getShowList } from "./state/actions";
+import { getShowList, getFavorites } from "./state/actions";
 
 function App(props) {
-  const {showList, actionGetShowList} = props;
+  const {showList, actionGetShowList, actionGetFavorites} = props;
 
   useEffect(() => {
     actionGetShowList();
+    actionGetFavorites();
   }, [])
 
   return (
@@ -26,7 +27,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  actionGetShowList: () => dispatch(getShowList())
+  actionGetShowList: () => dispatch(getShowList()),
+  actionGetFavorites: () => dispatch(getFavorites()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

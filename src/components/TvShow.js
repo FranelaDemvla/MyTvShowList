@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import { setFavorites } from '../state/actions';
 
 function TvShow(props) {
-    const [showModal, setShowModal] = useState(false)
-    const [checked, setChecked] = useState(false)
+    const { showInfo, actionSetFavorite, isFavorite } = props;
 
-    const { showInfo, actionSetFavorite } = props;
+    const [showModal, setShowModal] = useState(false)
+    const [checked, setChecked] = useState(isFavorite)
+
 
     const handleOpen = () => {
         setShowModal(true);

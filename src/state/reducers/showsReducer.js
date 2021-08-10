@@ -12,13 +12,11 @@ const showsReducer = (state = initialState, action) => {
         case actionTypes.SHOW_SEARCH:
             return { ...state, showList: action.payload };
         case actionTypes.GET_FAVS:
-            return state;
+            const storedList = JSON.parse(localStorage.getItem('favoritesList')) || [];
+            return {...state, favorites: storedList};
         case actionTypes.SET_FAV:
-            console.log(action.payload)
-
             const favList = state.favorites;
             const favIndex = state.favorites.indexOf(action.payload);
-            console.log(favIndex);
 
             if (favIndex === -1) {
                 favList.push(action.payload)
@@ -27,9 +25,10 @@ const showsReducer = (state = initialState, action) => {
                 favList.splice(favIndex, 1)
             }
 
-            console.log(favList);
-
-            return { ...state, favorites: favList }
+            return { ...state, favorites: favList };
+        case actionTypes.SAVE_FAV:
+            localStorage.setItem('favoritesList', JSON.stringify(state.favorites))
+            return state;
         default:
             return state;
     }

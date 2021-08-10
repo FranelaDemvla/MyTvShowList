@@ -35,6 +35,14 @@ export const getFavorites = () => {
   }
 }
 
+export const saveFavorites = (favs) => {
+  return (dispatch) => {
+    dispatch({
+      type: actionTypes.SAVE_FAV
+    })
+  }
+}
+
 export const setFavorites = (id) => {
   return (dispatch) => {
     dispatch({
