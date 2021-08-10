@@ -16,10 +16,14 @@ export const getFilteredShows = (query) => {
     return async (dispatch) => {
         await fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
         .then(res => res.json())
-        .then(data => dispatch({
+        .then(data => {
+            const showData = data.map(i => i.show)
+            console.log(showData);
+            dispatch({
             type: actionTypes.SHOW_SEARCH,
-            payload: data
-        }))
+            payload: showData
+            });
+        })
         .catch(error => console.error(error));
     }
 }
