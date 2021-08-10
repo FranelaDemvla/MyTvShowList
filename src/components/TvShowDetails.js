@@ -5,7 +5,7 @@ export default function TvShowDetails(props) {
 
     return (
         <div className="details-container">
-            <img src={showInfo.image.medium}/>
+            <img src={showInfo.image && showInfo.image.medium}/>
             <h1>{showInfo.name}</h1>
             <div dangerouslySetInnerHTML={{__html: showInfo.summary}}/>
         </div>

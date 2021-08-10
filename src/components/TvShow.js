@@ -17,7 +17,7 @@ export default function TvShow(props) {
 
     return (
         <div className="show-container">
-            <img onClick={handleOpen} src={showInfo.image.medium} />
+            <img onClick={handleOpen} src={showInfo.image && showInfo.image.medium} />
             <h2 onClick={handleOpen}>{showInfo.name}</h2>
             <Checkbox value={isFavorite} />
 
