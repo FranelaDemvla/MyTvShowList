@@ -30,4 +30,5 @@
 .details-container img {
     float: left;
     padding-right: 2em;
+    max-height: 24em;
 }
