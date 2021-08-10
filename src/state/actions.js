@@ -11,3 +11,15 @@ export const getShowList = () => {
         .catch(error => console.error(error));
     }
 }
+
+export const getFilteredShows = (query) => {
+    return async (dispatch) => {
+        await fetch(`https://api.tvmaze.com/search/shows?q=${query}`)
+        .then(res => res.json())
+        .then(data => dispatch({
+            type: actionTypes.SHOW_SEARCH,
+            payload: data
+        }))
+        .catch(error => console.error(error));
+    }
+}
