@@ -1,30 +1,32 @@
+import { useEffect } from 'react';
 import './App.css';
 import Filter from "./components/Filter";
 import TvShowList from './components/TvShowList';
 import { connect } from "react-redux";
-import { testAction } from "./state/actions";
-import { Button } from '@material-ui/core';
+import { getShowList } from "./state/actions";
 
 function App(props) {
-  const {test, actionTestAction} = props;
+  const {showList, actionGetShowList} = props;
+
+  useEffect(() => {
+    actionGetShowList();
+  }, [])
 
   return (
     <div className="main-container">
       <Filter/>
-      <h1>{test}</h1>
-      <Button onClick={() => actionTestAction()}/>
       <br/>
-      <TvShowList/>
+      <TvShowList showList={showList}/>
     </div>
   );
 }
 
 const mapStateToProps = (state) => ({
-  test: state.showsReducer.test
+  showList: state.showsReducer.showList
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  actionTestAction: () => dispatch(testAction())
+  actionGetShowList: () => dispatch(getShowList())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
